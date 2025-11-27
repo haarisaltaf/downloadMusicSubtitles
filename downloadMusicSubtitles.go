@@ -16,9 +16,8 @@ import (
 // check if subtitles exist for it's music name metadata and then find subtitiles
 // then download them
 func main() {
-	root := "."
 
-	filepath.WalkDir(root, func(path string, d os.DirEntry, err error) error {
+	filepath.WalkDir(".", func(path string, d os.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
@@ -27,7 +26,7 @@ func main() {
 			if strings.HasSuffix(d.Name(), ".flac") ||
 				strings.HasSuffix(d.Name(), ".wav") {
 
-				// gets subtitles from musixmatch with formatted name
+				// gets subtitles with formatted name
 				getSubtitles(getTitle(d.Name(), path))
 			}
 		}
